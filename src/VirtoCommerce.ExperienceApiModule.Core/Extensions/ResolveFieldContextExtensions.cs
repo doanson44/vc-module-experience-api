@@ -65,6 +65,9 @@ namespace VirtoCommerce.ExperienceApiModule.Core.Extensions
 
         public static T GetArgumentOrValue<T>(this IResolveFieldContext resolveContext, string key)
         {
+            if (resolveContext.Arguments.IsNullOrEmpty())
+                return default(T);
+            
             return resolveContext.GetArgument<T>(key) ?? resolveContext.GetValue<T>(key);
         }
 
